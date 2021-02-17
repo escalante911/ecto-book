@@ -1,10 +1,10 @@
 defmodule Books.App do
   import Ecto.Query
-  alias Books.{weather, Repo}
+  alias Books.{Weather, Repo}
 
   def keyword_query do
     query =
-      from w in weather,
+      from w in Weather,
            where: w.prcp > 0 or is_nil(w.prcp),
            select: w
 
@@ -12,7 +12,7 @@ defmodule Books.App do
   end
 
   def pipe_query do
-    weather
+    Weather
     |> where(city: "Kraków")
     |> order_by(:temp_lo)
     |> limit(10)
