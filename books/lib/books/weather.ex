@@ -1,6 +1,7 @@
 defmodule Books.Weather do
   use Ecto.Schema
 
+
   schema "weather" do
     field :city     # Defaults to type :string
     field :temp_lo, :integer
@@ -13,5 +14,7 @@ defmodule Books.Weather do
     |> Ecto.Changeset.cast(params, [:city, :temp_lo, :temp_hi, :prcp])
     |> Ecto.Changeset.validate_required([:city, :temp_lo, :temp_hi, :prcp])
   end
+
+
 
 end
