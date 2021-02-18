@@ -3,7 +3,7 @@ defmodule Books.Books do
 
   schema "books" do
     field :name, :string
-    has_many :author, Author.Books
+    belongs_to :author, Author.Books
     field :year, :string
   end
 
@@ -14,18 +14,10 @@ defmodule Books.Books do
   end
 end
 
-defmodule Author.Books do
-   use Ecto.Schema
 
-   schema "authors" do
-     field :name, :string
-     field :nacionalidad, :string
-     belongs_to :author, Books.Books
-   end
 
-   def changeset(author, params \\ %{}) do
-    author
-    |> Ecto.Changeset.cast(params, [:name, :nacionalidad])
-    |> Ecto.Changeset.validate_required([:name, :nacionalidad])
-  end
-end
+# book = %Books.Books{name: "Libro1", author: author, year: "2021" }
+# author = %Author.Books{name: "Luis", nacionalidad: "Colombia"}
+# Books.Repo.insert(author)
+# author = Books.Repo.get(Author.Books, 4)
+# Books.Repo.insert(book)
